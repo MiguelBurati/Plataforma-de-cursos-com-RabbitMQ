@@ -1,0 +1,11 @@
+{
+  "eventId": "55555555-5555-5555-5555-555555555555",
+  "tipo": "AVALIACAO_CANCELADA",
+  "ocorridoEm": "2025-06-12T08:00:00Z",
+  "dados": {
+    "alunoId": "A-001",
+    "alunoNome": "Maria Silva",
+    "avaliacaoId": "AV-55",
+    "referencia": "Módulo 3 - Exercício 2"
+  }
+}

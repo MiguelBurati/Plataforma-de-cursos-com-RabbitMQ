@@ -1,0 +1,12 @@
+{
+  "eventId": "11111111-1111-1111-1111-111111111111",
+  "tipo": "CURSO_CONCLUIDO",
+  "ocorridoEm": "2025-06-10T14:32:00Z",
+  "dados": {
+    "alunoId": "A-001",
+    "alunoNome": "Maria Silva",
+    "cursoId": "C-10",
+    "cursoNome": "Java Avançado",
+    "cargaHoraria": 40
+  }
+}

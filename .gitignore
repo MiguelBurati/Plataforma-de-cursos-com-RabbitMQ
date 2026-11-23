@@ -1,0 +1,12 @@
+# Pastas de build
+target/
+out/
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db

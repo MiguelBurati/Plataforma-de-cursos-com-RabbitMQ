@@ -1,0 +1,40 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: plataforma-rabbitmq
+    ports:
+      - "5672:5672"     # AMQP
+      - "15672:15672"   # painel web
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  postgres:
+    image: postgres:16
+    container_name: plataforma-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: plataforma
+      POSTGRES_PASSWORD: plataforma
+      POSTGRES_DB: plataforma
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U plataforma -d plataforma"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  rabbitmq-data:
+  postgres-data:

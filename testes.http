@@ -1,0 +1,98 @@
+### ==========================================
+### 1. TESTE DE ROTEAMENTO - CURSO CONCLUÍDO
+### Deve ir para: Certificação, Comunicação, Auditoria, Indicadores
+### ==========================================
+POST http://localhost:8080/eventos/curso-concluido
+Content-Type: application/json
+
+{
+  "alunoId": "A-1",
+  "alunoNome": "Maria",
+  "cursoId": "C-10",
+  "cursoNome": "Java",
+  "cargaHoraria": 40
+}
+
+### ==========================================
+### 2. TESTE DE ROTEAMENTO - CURSO ABANDONADO
+### Deve ir para: Comunicação, Auditoria
+### ==========================================
+POST http://localhost:8080/eventos/curso-abandonado
+Content-Type: application/json
+
+{
+  "alunoId": "A-2",
+  "alunoNome": "João",
+  "cursoId": "C-10",
+  "cursoNome": "Java"
+}
+
+### ==========================================
+### 3. TESTE DE ROTEAMENTO - AVALIAÇÃO ENVIADA
+### Deve ir para: Acompanhamento, Auditoria
+### ==========================================
+POST http://localhost:8080/eventos/avaliacao-enviada
+Content-Type: application/json
+
+{
+  "alunoId": "A-1",
+  "alunoNome": "Maria",
+  "avaliacaoId": "AV-55",
+  "referencia": "Módulo 3 - Exercício 2",
+  "nota": 8.0
+}
+
+### ==========================================
+### 4. TESTE DE ROTEAMENTO - AVALIAÇÃO REVISADA
+### Deve ir para: Comunicação, Acompanhamento, Auditoria
+### ==========================================
+POST http://localhost:8080/eventos/avaliacao-revisada
+Content-Type: application/json
+
+{
+  "alunoId": "A-1",
+  "alunoNome": "Maria",
+  "avaliacaoId": "AV-55",
+  "referencia": "Módulo 3 - Exercício 2",
+  "nota": 9.5
+}
+
+### ==========================================
+### 5. TESTE DE DUPLICIDADE
+### Envie este request DUAS VEZES.
+### O EventID é fixo. O banco não deve duplicar os efeitos.
+### ==========================================
+POST http://localhost:8080/eventos/republicar
+Content-Type: application/json
+
+{
+  "eventId": "11111111-1111-1111-1111-111111111111",
+  "tipo": "CURSO_CONCLUIDO",
+  "ocorridoEm": "2026-06-10T14:32:00Z",
+  "dados": {
+    "alunoId": "A-99",
+    "alunoNome": "Teste Duplicidade",
+    "cursoId": "C-10",
+    "cursoNome": "Java",
+    "cargaHoraria": 40
+  }
+}
+
+### ==========================================
+### 6. TESTE DE EVENTO NOVO (FAMÍLIA AVALIAÇÃO)
+### Acompanhamento e Auditoria devem receber.
+### ==========================================
+POST http://localhost:8080/eventos/republicar
+Content-Type: application/json
+
+{
+  "eventId": "55555555-5555-5555-5555-555555555555",
+  "tipo": "AVALIACAO_CANCELADA",
+  "ocorridoEm": "2026-06-12T08:00:00Z",
+  "dados": {
+    "alunoId": "A-1",
+    "alunoNome": "Maria",
+    "avaliacaoId": "AV-55",
+    "referencia": "Módulo 3 - Exercício 2"
+  }
+}
